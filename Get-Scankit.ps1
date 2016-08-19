@@ -102,7 +102,7 @@ $nping.Send($a,$b)
 
 if($Murica -eq $true) {
 Write-Host "MURICA MODE ENGAGED"
-for($i = 0; $i -lt 50; $i++) { 
+for($i = 0; $i -lt $Targets; $i++) { 
 $cnt = 1
 $to = 10
 $thost = ($rangeinit + $rangestart)
@@ -126,6 +126,7 @@ Get-Job | Receive-Job | Select-Object * -ExcludeProperty RunspaceId | out-gridvi
 
 if($Murica -ne $true) {
 for($i = 0; $i -lt $Targets; $i++) { 
+$thost = ($rangeinit + $rangestart)
 for($m = 0;$m -lt $cnt; $m++) {
 $responses = $nping.Send($thost,$to,$new,$op)
 Write-Host $thost ":" $responses.Status 
@@ -140,7 +141,4 @@ $rangestart = $rangestart.ToString()
 }
 }
 }
-
-
-
 
